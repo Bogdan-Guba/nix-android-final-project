@@ -1,4 +1,4 @@
-package com.example.nix_android_final_project
+package com.nix.summer.final_project
 
 import org.junit.Test
 
