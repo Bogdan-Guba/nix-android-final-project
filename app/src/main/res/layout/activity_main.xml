@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/remaining_header"
                 android:layout_marginTop="12sp"
+
                 android:text=""
                 android:textAlignment="center"
                 android:textColor="@color/black"
