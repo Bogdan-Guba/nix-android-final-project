@@ -5,4 +5,5 @@ data class Resources(
     val milk: Int = 540,
     val coffeeBeans: Int = 120,
     val cups: Int = 9,
+
     val money: Int = 550)
