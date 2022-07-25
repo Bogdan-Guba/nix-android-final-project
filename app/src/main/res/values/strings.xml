@@ -12,4 +12,8 @@
     <string name="disposable_cups">Write how many disposable cups of coffee do you want to add:</string>
     <string name="value">0</string>
     <string name="fill">Fill</string>
+    <string name="enter_water">Enter Water!</string>
+    <string name="enter_milk">Enter Milk!</string>
+    <string name="enter_coffee_beans">Enter Coffee Beans!</string>
+    <string name="enter_disposable_cups">Enter Disposable Cups!</string>
 </resources>
