@@ -1,3 +1,19 @@
 <resources>
-    <string name="app_name">nix-android-final-project</string>
+    <string name="app_name">Coffee Machine</string>
+    <string name="remaining_header">The coffee machine has:</string>
+    <string name="take">Take money</string>
+    <string name="make_header">Buy coffee:</string>
+    <string name="make_text">1 - espresso, 2 - latte, 3 - cappuccino</string>
+    <string name="make">Make Coffee</string>
+    <string name="fill_name">Fill:</string>
+    <string name="water">Write how many ml of water do you want to add:</string>
+    <string name="milk">Write how many ml of milk do you want to add:</string>
+    <string name="coffee_beans">Write how many grams of coffee beans do you want to add:</string>
+    <string name="disposable_cups">Write how many disposable cups of coffee do you want to add:</string>
+    <string name="value">0</string>
+    <string name="fill">Fill</string>
+    <string name="enter_water">Enter Water!</string>
+    <string name="enter_milk">Enter Milk!</string>
+    <string name="enter_coffee_beans">Enter Coffee Beans!</string>
+    <string name="enter_disposable_cups">Enter Disposable Cups!</string>
 </resources>
