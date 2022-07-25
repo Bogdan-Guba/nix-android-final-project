@@ -58,8 +58,7 @@ class FakeActionRepositoryImplementation: ActionRepository {
     }
 
     override fun take(): Response {
-        val response = Response("I gave you ${CoffeeMachine.money} USD")
-
+        val response = Response("I gave you ${CoffeeMachine.money}")
         CoffeeMachine.money = 0f
         return response
     }

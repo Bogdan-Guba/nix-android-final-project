@@ -15,7 +15,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <TextView
                 android:id="@+id/app_name"
                 android:layout_width="match_parent"
@@ -55,19 +54,6 @@
                 android:textColor="@color/black"
                 android:textIsSelectable="true"
                 android:textSize="16sp" />
-            <TextView
-                android:layout_below="@+id/remaining"
-                android:id="@+id/paymentMessage"
-                android:layout_marginTop="12sp"
-                android:layout_width="match_parent"
-                android:textAlignment="center"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textSize="16sp"
-                android:textColor="@color/black"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/message" />
-
             <TextView
                 android:layout_below="@+id/remaining"
                 android:id="@+id/paymentMessage"
@@ -185,6 +171,8 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="18sp" />
+
+
             <EditText
                 android:id="@+id/milk_input"
                 android:layout_width="match_parent"

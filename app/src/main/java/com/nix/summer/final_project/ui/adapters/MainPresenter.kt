@@ -1,5 +1,4 @@
 package com.nix.summer.final_project.ui.adapters
-
 import com.nix.summer.final_project.core.entities.Coffee
 import com.nix.summer.final_project.core.entities.Order
 import com.nix.summer.final_project.core.entities.Payment
@@ -14,9 +13,7 @@ class MainPresenter(private val mBuy: BuyCoffeeInteractor,
                     private val mInfo: ShowResourcesInteractor,
                     private val mTake: TakeMoneyInteractor,
                     private val mSet: SetResourcesInteractor,
-
-                    private val exchangeCurrencyInteractor: ExchangeCurrencyInteractor,
-                    private val loadPaymentInteractor: LoadPaymentInteractor) : Contract.Presenter, CoroutineScope {
+                    private val exchangeCurrencyInteractor: ExchangeCurrencyInteractor) : Contract.Presenter, CoroutineScope {
 
     private var view: Contract.View ?= null
 
@@ -33,7 +30,6 @@ class MainPresenter(private val mBuy: BuyCoffeeInteractor,
 
     fun start() {
         mSet(Resources())
-        view?.paymentLoad()
         remaining()
     }
 
@@ -65,14 +61,4 @@ class MainPresenter(private val mBuy: BuyCoffeeInteractor,
             }
         }
     }
-
-    fun loadPayment() {
-        launch {
-            val response = loadPaymentInteractor()
-            withContext(Dispatchers.Main) {
-                view?.showData(response)
-            }
-        }
-    }
-
 }

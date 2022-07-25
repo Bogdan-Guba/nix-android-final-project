@@ -1,6 +1,8 @@
 package com.nix.summer.final_project.ui.adapters
 
 import com.nix.summer.final_project.core.entities.Response
+import com.nix.summer.final_project.core.interactors.ExchangeCurrencyInteractor
+import kotlinx.coroutines.CoroutineScope
 
 class Contract {
 
@@ -11,8 +13,6 @@ class Contract {
         fun fill()
 
         fun take()
-
-        fun paymentLoad()
 
         fun showInfoRes(info: String)
 
