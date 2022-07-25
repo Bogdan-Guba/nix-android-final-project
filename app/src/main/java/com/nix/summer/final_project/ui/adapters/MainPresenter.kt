@@ -1,17 +1,24 @@
 package com.nix.summer.final_project.ui.adapters
-
+import com.nix.summer.final_project.core.entities.Coffee
 import com.nix.summer.final_project.core.entities.Order
+import com.nix.summer.final_project.core.entities.Payment
 import com.nix.summer.final_project.core.entities.Resources
 import com.nix.summer.final_project.core.interactors.*
+import kotlinx.coroutines.*
+import kotlin.coroutines.CoroutineContext
 
 
 class MainPresenter(private val mBuy: BuyCoffeeInteractor,
                     private val mFill: FillResourcesInteractor,
                     private val mInfo: ShowResourcesInteractor,
                     private val mTake: TakeMoneyInteractor,
-                    private val mSet: SetResourcesInteractor) : Contract.Presenter {
+                    private val mSet: SetResourcesInteractor,
+                    private val exchangeCurrencyInteractor: ExchangeCurrencyInteractor) : Contract.Presenter, CoroutineScope {
 
     private var view: Contract.View ?= null
+
+    private val job = Job()
+    override val coroutineContext: CoroutineContext = job + Dispatchers.Default
 
     override fun attach(view: Contract.View) {
         this.view = view
@@ -26,7 +33,8 @@ class MainPresenter(private val mBuy: BuyCoffeeInteractor,
         remaining()
     }
 
-    fun buy(order: Order) {
+    fun buy(order: Order, coffee: Coffee, money: String) {
+        exchangePayment(Payment(coffee.currency, coffee.money, money))
         view?.showInfo(mBuy(order).notify)
         remaining()
     }
@@ -43,5 +51,14 @@ class MainPresenter(private val mBuy: BuyCoffeeInteractor,
 
     private fun remaining() {
         view?.showInfoRes(mInfo().notify)
+    }
+
+    private fun exchangePayment(payment: Payment) {
+        launch {
+            val response = exchangeCurrencyInteractor(payment)
+            withContext(Dispatchers.Main) {
+                view?.showData(response)
+            }
+        }
     }
 }

@@ -11,7 +11,7 @@ class FakeActionRepositoryImplementation: ActionRepository {
         var milk = 0
         var coffeeBeans = 0
         var cups = 0
-        var money = 0
+        var money = 0f
     }
 
     override fun setData(resources: Resources) {
@@ -59,7 +59,7 @@ class FakeActionRepositoryImplementation: ActionRepository {
 
     override fun take(): Response {
         val response = Response("I gave you ${CoffeeMachine.money}")
-        CoffeeMachine.money = 0
+        CoffeeMachine.money = 0f
         return response
     }
 }

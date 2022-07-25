@@ -1,29 +1,45 @@
 package com.nix.summer.final_project.ui.views
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
-import com.nix.summer.final_project.*
-import com.nix.summer.final_project.ui.adapters.Contract
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
+import com.nix.summer.final_project.R
+import com.nix.summer.final_project.core.entities.Coffee
 import com.nix.summer.final_project.core.entities.Order
 import com.nix.summer.final_project.core.entities.Resources
+import com.nix.summer.final_project.core.entities.Response
 import com.nix.summer.final_project.core.interactors.*
+import com.nix.summer.final_project.data.mappers.NetworkPaymentToPaymentMapper
+import com.nix.summer.final_project.data.network.Network
 import com.nix.summer.final_project.data.repositories.FakeActionRepositoryImplementation
+import com.nix.summer.final_project.data.repositories.PaymentRepositoryImplementation
+import com.nix.summer.final_project.ui.adapters.Contract
+
 import com.nix.summer.final_project.ui.adapters.MainPresenter
 
 class MainActivity : AppCompatActivity(), Contract.View {
 
-    override var presenter = MainPresenter(
-        mBuy = BuyCoffeeInteractor(FakeActionRepositoryImplementation()),
-        mFill = FillResourcesInteractor(FakeActionRepositoryImplementation()),
-        mInfo = ShowResourcesInteractor(FakeActionRepositoryImplementation()),
-        mTake = TakeMoneyInteractor(FakeActionRepositoryImplementation()),
-        mSet = SetResourcesInteractor(FakeActionRepositoryImplementation())
-    )
+    private val presenter by lazy {
+
+        val repository = PaymentRepositoryImplementation(
+            Network.api,
+            NetworkPaymentToPaymentMapper()
+        )
+
+        MainPresenter(
+            mBuy = BuyCoffeeInteractor(FakeActionRepositoryImplementation()),
+            mFill = FillResourcesInteractor(FakeActionRepositoryImplementation()),
+            mInfo = ShowResourcesInteractor(FakeActionRepositoryImplementation()),
+            mTake = TakeMoneyInteractor(FakeActionRepositoryImplementation()),
+            mSet = SetResourcesInteractor(FakeActionRepositoryImplementation()),
+            exchangeCurrencyInteractor = ExchangeCurrencyInteractor(repository)
+        )
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +51,20 @@ class MainActivity : AppCompatActivity(), Contract.View {
         take()
     }
 
+    private fun checkSwitch(): String {
+        val paymentSwitch: SwitchCompat = findViewById(R.id.switch_money)
+        return if (paymentSwitch.isChecked) {
+            "UAH"
+        } else {
+            "USD"
+        }
+    }
+
+    override fun showData(response: Response) {
+        val textVeiw = findViewById<TextView>(R.id.paymentMessage)
+        textVeiw.text = response.notify
+    }
+
     override fun buy() {
         val makeButton: Button = findViewById(R.id.make_button)
         val textInput: EditText = findViewById(R.id.make_text)
@@ -43,7 +73,17 @@ class MainActivity : AppCompatActivity(), Contract.View {
                 Toast.makeText(this, R.string.make_text, Toast.LENGTH_SHORT).show()
             } else {
                 val order = Order(textInput.text.toString().trim())
-                presenter.buy(order = order)
+                when (order.choice) {
+                    "1" -> {
+                        presenter.buy(order = order, Coffee.ESPRESSO, checkSwitch())
+                    }
+                    "2" -> {
+                        presenter.buy(order = order, Coffee.LATTE, checkSwitch())
+                    }
+                    "3" -> {
+                        presenter.buy(order = order, Coffee.CAPPUCCINO, checkSwitch())
+                    }
+                }
             }
         }
     }
