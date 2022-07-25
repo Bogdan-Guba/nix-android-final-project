@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "nix-android-final-project"
+rootProject.name = "My Application Empty"
 include ':app'
