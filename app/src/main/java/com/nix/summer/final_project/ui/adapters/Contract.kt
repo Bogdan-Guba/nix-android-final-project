@@ -1,10 +1,10 @@
 package com.nix.summer.final_project.ui.adapters
 
+import com.nix.summer.final_project.core.entities.Response
+
 class Contract {
 
     interface View {
-
-        var presenter: MainPresenter
 
         fun buy()
 
@@ -12,10 +12,13 @@ class Contract {
 
         fun take()
 
+        fun paymentLoad()
+
         fun showInfoRes(info: String)
 
         fun showInfo(info: String)
 
+        fun showData(response: Response)
     }
 
     interface Presenter {

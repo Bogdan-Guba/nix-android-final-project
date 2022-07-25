@@ -16,4 +16,7 @@
     <string name="enter_milk">Enter Milk!</string>
     <string name="enter_coffee_beans">Enter Coffee Beans!</string>
     <string name="enter_disposable_cups">Enter Disposable Cups!</string>
+    <string name="switch_money">USD/UAH</string>
+    <string name="currency_default">USD</string>
+    <string name="currency">UAH</string>
 </resources>
