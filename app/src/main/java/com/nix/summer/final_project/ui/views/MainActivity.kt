@@ -13,6 +13,7 @@ import com.nix.summer.final_project.core.entities.Order
 import com.nix.summer.final_project.core.entities.Resources
 import com.nix.summer.final_project.core.entities.Response
 import com.nix.summer.final_project.core.interactors.*
+
 import com.nix.summer.final_project.data.database.Database
 import com.nix.summer.final_project.data.mappers.DatabasePaymentToPaymentMapper
 import com.nix.summer.final_project.data.mappers.NetworkPaymentToPaymentMapper
@@ -46,6 +47,7 @@ class MainActivity : AppCompatActivity(), Contract.View {
         )
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -59,6 +61,7 @@ class MainActivity : AppCompatActivity(), Contract.View {
     override fun paymentLoad() {
         presenter.loadPayment()
     }
+
 
     private fun checkSwitch(): String {
         val paymentSwitch: SwitchCompat = findViewById(R.id.switch_money)

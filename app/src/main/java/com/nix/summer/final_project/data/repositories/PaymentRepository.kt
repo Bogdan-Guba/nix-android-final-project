@@ -9,4 +9,5 @@ interface PaymentRepository {
     fun savePayment(payment: Payment)
 
     fun loadPayment(): Payment?
+
 }

@@ -14,6 +14,7 @@ class MainPresenter(private val mBuy: BuyCoffeeInteractor,
                     private val mInfo: ShowResourcesInteractor,
                     private val mTake: TakeMoneyInteractor,
                     private val mSet: SetResourcesInteractor,
+
                     private val exchangeCurrencyInteractor: ExchangeCurrencyInteractor,
                     private val loadPaymentInteractor: LoadPaymentInteractor) : Contract.Presenter, CoroutineScope {
 
@@ -73,4 +74,5 @@ class MainPresenter(private val mBuy: BuyCoffeeInteractor,
             }
         }
     }
+
 }
