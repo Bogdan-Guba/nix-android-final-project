@@ -1,5 +1,4 @@
 package com.nix.summer.final_project.ui.adapters
-
 import com.nix.summer.final_project.core.entities.Coffee
 import com.nix.summer.final_project.core.entities.Order
 import com.nix.summer.final_project.core.entities.Payment
