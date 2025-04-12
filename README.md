@@ -18,7 +18,7 @@ Android application for controlling a coffee machine via API, built with Kotlin 
 
 - **Kotlin** - Primary language
 - **Retrofit** - API communication
-- **MVP** -  architectural pattern
+- **MVC** -  architectural pattern
 
 ## Project Structure
 
